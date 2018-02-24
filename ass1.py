@@ -8,16 +8,16 @@ payload = ""
 checksum = ""
 rest = ""
 
-def ALP(rest):
+def ALP(line2):
     x = ""
     total = 0
     checksum = ""
     #extract checksum from the frame
-    for z in range(len(rest)-2, len(rest)):
-        checksum += rest[z]
+    for z in range(len(line2)-2, len(line2)):
+        checksum += line2[z]
 
-    for z in range(0, len(rest)- 2):
-        x += rest[z]
+    for z in range(0, len(line2)- 2):
+        x += line2[z]
         #print(x)
         #if there are two bits in x:
         if z % 2 == 1:
@@ -25,6 +25,7 @@ def ALP(rest):
             total += int(x, 16)
             #reset x
             x = ""
+    print(total)
     calculated_checksum = hex(total % 128)
     print(calculated_checksum)
 
@@ -52,7 +53,7 @@ for x in range(16, len(line2)):
 
 amount_of_frames = len(rest) / 62
 
-ALP(rest)
+ALP(line2)
 
 
 
